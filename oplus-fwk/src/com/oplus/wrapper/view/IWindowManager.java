@@ -564,6 +564,10 @@ public interface IWindowManager {
             public List<ComponentName> notifyScreenshotListeners(int displayId) {
                 return null;
             }
+
+            @Override
+            public void onOverlayChanged() {
+            }
         };
 
         public static IWindowManager asInterface(IBinder obj) {
