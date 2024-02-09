@@ -2,6 +2,7 @@ package com.oplus.wrapper.view;
 
 import android.app.IAssistDataReceiver;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -597,6 +598,10 @@ public interface IWindowManager {
             @Override
             public void onOverlayChanged() {
             }
+
+            public void sendCustomAction(Intent intent) {;
+            }
+
         };
 
         public static IWindowManager asInterface(IBinder obj) {
