@@ -595,10 +595,6 @@ public interface IWindowManager {
             public void unregisterTrustedPresentationListener(ITrustedPresentationListener listener,int id) {
             }
 
-            @Override
-            public void onOverlayChanged() {
-            }
-
             public void sendCustomAction(Intent intent) {;
             }
 
