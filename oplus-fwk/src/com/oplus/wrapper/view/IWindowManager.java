@@ -47,6 +47,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import android.window.ITrustedPresentationListener;
+import android.window.TrustedPresentationThresholds;
+import android.view.IDecorViewGestureListener;
+import android.view.SurfaceControl;
+import android.os.IBinder;
+import android.app.IApplicationThread;
+import android.window.WindowContextInfo;
 
 /* loaded from: classes.dex */
 public interface IWindowManager {
@@ -246,20 +253,20 @@ public interface IWindowManager {
                 return 0;
             }
 
-            public void freezeRotation(int i) throws RemoteException {
+            public void freezeRotation(int i, String s) throws RemoteException {
             }
 
-            public void thawRotation() throws RemoteException {
+            public void thawRotation(String s) throws RemoteException {
             }
 
             public boolean isRotationFrozen() throws RemoteException {
                 return false;
             }
 
-            public void freezeDisplayRotation(int i, int i1) throws RemoteException {
+            public void freezeDisplayRotation(int i, int i1, String s) throws RemoteException {
             }
 
-            public void thawDisplayRotation(int i) throws RemoteException {
+            public void thawDisplayRotation(int i, String s) throws RemoteException {
             }
 
             public boolean isDisplayRotationFrozen(int i) throws RemoteException {
@@ -351,7 +358,7 @@ public interface IWindowManager {
             public void createInputConsumer(IBinder iBinder, String s, int i, InputChannel inputChannel) throws RemoteException {
             }
 
-            public boolean destroyInputConsumer(String s, int i) throws RemoteException {
+            public boolean destroyInputConsumer(IBinder iBinder, int i) throws RemoteException {
                 return false;
             }
 
@@ -488,18 +495,20 @@ public interface IWindowManager {
             public void setDisplayHashThrottlingEnabled(boolean b) throws RemoteException {
             }
 
-            public Configuration attachWindowContextToDisplayArea(IBinder iBinder, int i, int i1, Bundle bundle) throws RemoteException {
+            public WindowContextInfo attachWindowContextToDisplayArea(IApplicationThread applicationThread, IBinder iBinder, int i, int i1, Bundle bundle) throws RemoteException {
                 return null;
             }
 
-            public void attachWindowContextToWindowToken(IBinder iBinder, IBinder iBinder1) throws RemoteException {
-            }
-
-            public Configuration attachToDisplayContent(IBinder iBinder, int i) throws RemoteException {
+            public WindowContextInfo attachWindowContextToWindowToken(IApplicationThread applicationThread, IBinder iBinder, IBinder iBinder1) throws RemoteException {
                 return null;
             }
 
-            public void detachWindowContextFromWindowContainer(IBinder iBinder) throws RemoteException {
+            public WindowContextInfo attachWindowContextToDisplayContent(IApplicationThread applicationThread, IBinder iBinder, int i) throws RemoteException {
+            // Implementation of the method
+               return null; // or whatever the appropriate return value is
+            }
+
+            public void detachWindowContext(IBinder iBinder) throws RemoteException {
             }
 
             public boolean registerCrossWindowBlurEnabledListener(ICrossWindowBlurEnabledListener iCrossWindowBlurEnabledListener) throws RemoteException {
@@ -563,6 +572,26 @@ public interface IWindowManager {
 
             public List<ComponentName> notifyScreenshotListeners(int displayId) {
                 return null;
+            }
+            
+            public  boolean replaceContentOnDisplay(int displayId, SurfaceControl sc) {
+               return false;
+            }
+
+            @Override
+            public void registerDecorViewGestureListener(IDecorViewGestureListener listener, int displayId) {
+            }
+
+            @Override
+            public void unregisterDecorViewGestureListener(IDecorViewGestureListener listener, int displayId) {
+            }
+ 
+            @Override
+            public void registerTrustedPresentationListener(IBinder binder, ITrustedPresentationListener listener, TrustedPresentationThresholds thresholds, int id) {
+            }
+
+            @Override
+            public void unregisterTrustedPresentationListener(ITrustedPresentationListener listener,int id) {
             }
 
             @Override
